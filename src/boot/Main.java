@@ -25,7 +25,6 @@ public class Main {
 		fs.delete("dev");
 		fs.delete("opt");
 		fs.showFileSystem();
-		Integer.parseUnsignedInt("1");
 	}
 
 }

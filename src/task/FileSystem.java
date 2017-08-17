@@ -103,8 +103,7 @@ public class FileSystem {
 	 */
 	private state checkNewItem(String parentDirName, String itemName, Integer itemSize){
 		if(itemName.length()>maxLength)
-			return state.NAME_ERROR;
-		
+			return state.NAME_ERROR;		
 		try{
 			Integer.parseUnsignedInt(itemSize.toString());
 			return state.PROPER;
