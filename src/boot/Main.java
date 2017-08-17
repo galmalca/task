@@ -12,7 +12,7 @@ public class Main {
 		fs.addDir("/", "opt");
 		fs.addDir("/", "dev");
 		fs.addDir("/", "home");
-		fs.addFile(null, "chardev.ko", 14);
+		fs.addFile(null, "chardev.ko", -1);
 		fs.addDir("/", "dev");
 		fs.addDir("/", "home");
 		fs.addFile(null, "chardev.ko", 17);
@@ -25,6 +25,7 @@ public class Main {
 		fs.delete("dev");
 		fs.delete("opt");
 		fs.showFileSystem();
+		Integer.parseUnsignedInt("1");
 	}
 
 }

@@ -10,7 +10,6 @@ enum state{
 }
 public class FileSystem {
 	private static final int maxLength = 31;
-	private static final int minSize = 0;
 	
 	/**
 	 the data structure is HashTable because by the definition of HashTable, 
@@ -105,10 +104,15 @@ public class FileSystem {
 	private state checkNewItem(String parentDirName, String itemName, Integer itemSize){
 		if(itemName.length()>maxLength)
 			return state.NAME_ERROR;
-		if(itemSize == null || itemSize > minSize)
+		
+		try{
+			Integer.parseUnsignedInt(itemSize.toString());
 			return state.PROPER;
-		if(itemSize <= 0)
-			return state.SIZE_ERROR;
-		return state.PROPER;
+		}catch(Exception e){
+			if(itemSize == null)
+				return state.PROPER;
+			else
+				return state.SIZE_ERROR; 
+		}
 	}
 }
