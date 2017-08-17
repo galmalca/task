@@ -1,6 +1,6 @@
 package boot;
 
-import java.sql.Date;
+import java.util.Date;
 
 import task.Directory;
 import task.FileSystem;
@@ -21,7 +21,7 @@ public class Main {
 		fs.addDir(d1.getParentDirName(),d1.getName());
 		fs.setDate("gal", date);
 		fs.showFileSystem();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		fs.delete("dev");
 		fs.delete("opt");
 		fs.showFileSystem();

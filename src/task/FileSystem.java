@@ -1,10 +1,16 @@
 package task;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Hashtable;
-
+/**
+ * enum state to return a constant to a clear value
+ */
+enum state{
+	NAME_ERROR, SIZE_ERROR, PARENT_ERROR, PROPER, ITEM_ALREADY_IN_HASH, ITEM_NOT_FOUND
+}
 public class FileSystem {
-	
+	private static final int maxLength = 31;
+	private static final int minSize = 0;
 	
 	/**
 	 the data structure is HashTable because by the definition of HashTable, 
@@ -16,13 +22,6 @@ public class FileSystem {
 	 */
 	public FileSystem(){
 		this.itemsHaseTable = new Hashtable<>();
-	}
-	
-	/**
-	 * enum state to return a constant and clear value
-	 */
-	public enum state{
-		NAMEERROR, SIZEERROR, PARENTERROR, PROPER, ITEMALREADYINHASH, ITEMNOTFOUND
 	}
 	/**
 	 * add new file to the file system
@@ -36,7 +35,7 @@ public class FileSystem {
 			Item i = new File(fileName, parentDirName, null, fileSize);
 			itemsHaseTable.put(fileName, i);
 		}catch(Exception e){
-			return state.ITEMALREADYINHASH;
+			return state.ITEM_ALREADY_IN_HASH;
 		}
 		return state.PROPER;
 	}
@@ -52,7 +51,7 @@ public class FileSystem {
 			Item i = new Directory(dirName, parentDirName, null);
 			itemsHaseTable.put(dirName, i);
 		}catch(Exception e){
-			return state.ITEMALREADYINHASH;
+			return state.ITEM_ALREADY_IN_HASH;
 		}
 		return state.PROPER;
 	}
@@ -68,7 +67,7 @@ public class FileSystem {
 			return state.PROPER;
 		}catch(Exception e){
 			//Item not found in HashTable
-			return state.ITEMNOTFOUND;
+			return state.ITEM_NOT_FOUND;
 		}
 	}
 	/**
@@ -93,7 +92,7 @@ public class FileSystem {
 			return state.PROPER;
 		}catch(Exception e){
 			//Item doesn't exist
-			return state.ITEMNOTFOUND;
+			return state.ITEM_NOT_FOUND;
 		}
 	}
 	/**
@@ -104,12 +103,12 @@ public class FileSystem {
 	 * @return state, PROPER for a successful state, NAMEERROR if the name is grater then 31 characters, SIZEERROR if the size is negative.
 	 */
 	private state checkNewItem(String parentDirName, String itemName, Integer itemSize){
-		if(itemName.length()>31)
-			return state.NAMEERROR;
-		if(itemSize == null || itemSize > 0)
+		if(itemName.length()>maxLength)
+			return state.NAME_ERROR;
+		if(itemSize == null || itemSize > minSize)
 			return state.PROPER;
 		if(itemSize <= 0)
-			return state.SIZEERROR;
+			return state.SIZE_ERROR;
 		return state.PROPER;
 	}
 }

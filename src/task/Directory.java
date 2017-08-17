@@ -1,9 +1,7 @@
 package task;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Hashtable;
-
-import task.FileSystem.state;
 
 public class Directory extends Item{
 	/**
@@ -29,7 +27,7 @@ public class Directory extends Item{
 				item.setParentDirName(getName());
 				this.haseTable.put(item.getName(), item);
 			}catch (Exception e) {
-				return state.ITEMALREADYINHASH;
+				return state.ITEM_ALREADY_IN_HASH;
 			}
 		return state.PROPER;
 	}
